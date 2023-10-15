@@ -16,14 +16,14 @@ def test_create_account():
     assert account.status == 'Active'
 
 def test_account_deposit():
-    account = Account(name="John Doe", currency="€", country="Spain")
+    account = Account('John Doe', '€', "Spain")
     initial_balance = account.balance
     deposit_amount = 100
     account.deposit(deposit_amount)
     assert account.balance == initial_balance + deposit_amount
 
 def test_account_withdraw():
-    account = Account(name="John Doe", currency="€", country="Spain")
+    account = Account('John Doe', '€', "Spain")
     account.balance = 300  
     withdrawal_amount = 100
     account.withdraw(withdrawal_amount)
