@@ -38,24 +38,25 @@ def test_update_account():
     original_country = 'Spain'
     updated_country = 'USA'
 
-    account = Account(original_name, original_currency, original_country)
-    db.session.add(account)
-    db.session.commit()
+    with app.app_context():  # Add this line to set up the application context
+        account = Account(original_name, original_currency, original_country)
+        db.session.add(account)
+        db.session.commit()
 
-    # Update the Account
-    account.name = updated_name
-    account.currency = updated_currency
-    account.country = updated_country
-    db.session.commit()
+        # Update the Account
+        account.name = updated_name
+        account.currency = updated_currency
+        account.country = updated_country
+        db.session.commit()
 
-    # Retrieve the updated Account
-    updated_account = Account.query.get(account.id)
+        # Retrieve the updated Account
+        updated_account = Account.query.get(account.id)
 
-    # Check that the updated fields match the changes
-    assert updated_account.name == updated_name
-    assert updated_account.currency == updated_currency
-    assert updated_account.country == updated_country
+        # Check that the updated fields match the changes
+        assert updated_account.name == updated_name
+        assert updated_account.currency == updated_currency
+        assert updated_account.country == updated_country
 
-    # Clean up the database
-    db.session.delete(updated_account)
-    db.session.commit()
+        # Clean up the database
+        db.session.delete(updated_account)
+        db.session.commit()
