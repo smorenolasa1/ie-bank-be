@@ -24,7 +24,7 @@ def test_account_deposit():
 
 def test_account_withdraw():
     account = Account(name="John Doe", currency="€", country="Spain")
-    account.balance = 200  # Set an initial balance
+    account.balance = 300  
     withdrawal_amount = 100
     account.withdraw(withdrawal_amount)
-    assert account.balance == 100  # The new balance after withdrawal    
+    assert account.balance == 200      
