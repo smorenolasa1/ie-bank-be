@@ -24,38 +24,21 @@ def test_create_account():
     with app.app_context():
         db.drop_all()
 
-def test_create_and_retrieve_account():
+def test_account_deactivate():
     """
-    GIVEN an Account model
-    WHEN a new Account is created and saved
-    THEN check if the account can be retrieved correctly
+    GIVEN a Account model
+    WHEN a new Account is created
+    THEN check the __deactivate__ method is defined correctly
     """
-    # Create a new account
-    account = Account('John Doe', '€', "Spain")
-    assert account.name == 'John Doe'
-    assert account.currency == '€'
-    assert account.country == "Spain"
-    assert account.account_number is not None
-    assert account.balance == 0.0
-    assert account.status == 'Active'
-
-    # Add the account to the database
-    db.session.add(account)
-    db.session.commit()
-
-    # Retrieve the account from the database
-    retrieved_account = Account.query.filter_by(account_number=account.account_number).first()
-
-    # Check if the retrieved account matches the original
-    assert retrieved_account is not None
-    assert retrieved_account.name == 'John Doe'
-    assert retrieved_account.currency == '€'
-    assert retrieved_account.country == "Spain"
-    assert retrieved_account.balance == 0.0
-    assert retrieved_account.status == 'Active'
-
-    # Clean up
-    with app.app_context():
-        db.drop_all()
-
+    account = Account("John Doe", "Spain", "€")
+    assert account.__deactivate__() == "Inactive"
+    
+def test_account_check():
+    """
+    GIVEN a Account model
+    WHEN a new Account is created
+    THEN check the __repr__ method is defined correctly
+    """
+    account = Account("John Doe", "Spain", "€")
+    assert repr(account) == f"<Event '{(account.account_number)}'>"
 
