@@ -24,13 +24,13 @@ def test_create_account():
     with app.app_context():
         db.drop_all()
 
-def test_account_str_representation():
+def test_account_check():
     """
-    GIVEN an Account model
+    GIVEN a Account model
     WHEN a new Account is created
-    THEN check the __str__ method returns the expected string representation
+    THEN check the __repr__ method is defined correctly
     """
     account = Account("John Doe", "Spain", "€")
-    expected_str = f"Account {account.account_number}: Name - {account.name}, Country - {account.country}, Currency - {account.currency}"
-    assert str(account) == expected_str
+    assert repr(account) == f"<Event '{(account.account_number)}'>"
 
+ 
