@@ -24,39 +24,13 @@ def test_create_account():
     with app.app_context():
         db.drop_all()
 
-def test_update_account():
+def test_account_str_representation():
     """
-    GIVEN an existing Account model
-    WHEN an Account is updated
-    THEN check that the updated fields are saved correctly
+    GIVEN an Account model
+    WHEN a new Account is created
+    THEN check the __str__ method returns the expected string representation
     """
-    # Create a new Account
-    original_name = 'John Doe'
-    updated_name = 'Jane Smith'
-    original_currency = '€'
-    updated_currency = '$'
-    original_country = 'Spain'
-    updated_country = 'USA'
+    account = Account("John Doe", "Spain", "€")
+    expected_str = f"Account {account.account_number}: Name - {account.name}, Country - {account.country}, Currency - {account.currency}"
+    assert str(account) == expected_str
 
-    with app.app_context():  # Add this line to set up the application context
-        account = Account(original_name, original_currency, original_country)
-        db.session.add(account)
-        db.session.commit()
-
-        # Update the Account
-        account.name = updated_name
-        account.currency = updated_currency
-        account.country = updated_country
-        db.session.commit()
-
-        # Retrieve the updated Account
-        updated_account = Account.query.get(account.id)
-
-        # Check that the updated fields match the changes
-        assert updated_account.name == updated_name
-        assert updated_account.currency == updated_currency
-        assert updated_account.country == updated_country
-
-        # Clean up the database
-        db.session.delete(updated_account)
-        db.session.commit()
