@@ -24,13 +24,38 @@ def test_create_account():
     with app.app_context():
         db.drop_all()
 
-def test_account_check():
+def test_update_account():
     """
-    GIVEN a Account model
-    WHEN a new Account is created
-    THEN check the __repr__ method is defined correctly
+    GIVEN an existing Account model
+    WHEN an Account is updated
+    THEN check that the updated fields are saved correctly
     """
-    account = Account("John Doe", "Spain", "€")
-    assert repr(account) == f"<Event '{(account.account_number)}'>"
+    # Create a new Account
+    original_name = 'John Doe'
+    updated_name = 'Jane Smith'
+    original_currency = '€'
+    updated_currency = '$'
+    original_country = 'Spain'
+    updated_country = 'USA'
 
- 
+    account = Account(original_name, original_currency, original_country)
+    db.session.add(account)
+    db.session.commit()
+
+    # Update the Account
+    account.name = updated_name
+    account.currency = updated_currency
+    account.country = updated_country
+    db.session.commit()
+
+    # Retrieve the updated Account
+    updated_account = Account.query.get(account.id)
+
+    # Check that the updated fields match the changes
+    assert updated_account.name == updated_name
+    assert updated_account.currency == updated_currency
+    assert updated_account.country == updated_country
+
+    # Clean up the database
+    db.session.delete(updated_account)
+    db.session.commit()
