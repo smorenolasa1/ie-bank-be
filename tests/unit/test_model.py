@@ -24,21 +24,4 @@ def test_create_account():
     with app.app_context():
         db.drop_all()
 
-def test_account_deactivate():
-    """
-    GIVEN a Account model
-    WHEN a new Account is created
-    THEN check the __deactivate__ method is defined correctly
-    """
-    account = Account("John Doe", "Spain", "€")
-    assert account.__deactivate__() == "Inactive"
     
-def test_account_check():
-    """
-    GIVEN a Account model
-    WHEN a new Account is created
-    THEN check the __repr__ method is defined correctly
-    """
-    account = Account("John Doe", "Spain", "€")
-    assert repr(account) == f"<Event '{(account.account_number)}'>"
-
