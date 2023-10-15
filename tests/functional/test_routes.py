@@ -29,6 +29,9 @@ def test_create_account(testing_client):
     response = testing_client.post('/accounts', json={'name': 'John Doe', 'currency': '€', 'country': 'Spain'})
     assert response.status_code == 200
 
+def test_create_and_retrieve_account(testing_client):
+    response = testing_client.post('/accounts', json={'name': 'John Doe', 'currency': '€', 'country': 'Spain'})
+    assert response.status_code == 200
 
 def test_delete_account(testing_client):
     """
