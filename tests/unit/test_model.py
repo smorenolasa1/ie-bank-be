@@ -32,3 +32,15 @@ def test_account_check():
     """
     account = Account("John Doe", "Spain", "€")
     assert repr(account) == f"<Event '{(account.account_number)}'>"
+
+def test_account_initial_balance():
+    """
+    GIVEN a Account model
+    WHEN a new Account is created
+    THEN check the initial balance is zero
+    """
+    with app.app_context():
+        account = Account("John Doe", "Spain", "€")
+        db.session.add(account)
+        db.session.commit()
+        assert account.balance == 0.0
