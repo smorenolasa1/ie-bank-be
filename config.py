@@ -25,6 +25,7 @@ class DevelopmentConfig(Config):
     )
     DEBUG = True
 
+########## ADDED THIS FOR UAT DEPLOYEMNT ##########
 class UATConfig(Config):
     SQLALCHEMY_DATABASE_URI = "postgresql://{dbuser}:{dbpass}@{dbhost}/{dbname}".format(
         dbuser=os.getenv("DBUSER"),
@@ -33,3 +34,4 @@ class UATConfig(Config):
         dbname=os.getenv("DBNAME"),
     )
     DEBUG = False
+####################################################

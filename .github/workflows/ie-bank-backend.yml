@@ -12,9 +12,11 @@ permissions:
 
 env:
   BACKEND_WEBAPP_DEV: sofia2-be-dev
+  ####### ADDED THIS TO DEPLOY TO UAT ########
   BACKEND_WEBAPP_UAT: sofia2-be-uat
   source_branch_name: ${{ github.ref }}
   pr_target_branch_name: ${{ github.base_ref }}
+  ############################################
 
 jobs:
   build:
@@ -83,7 +85,7 @@ jobs:
         with:
           app-name: ${{ env.BACKEND_WEBAPP_DEV }}
           package: .
-
+########### DEPLOY UAT ##############
   deploy-uat:
     runs-on: ubuntu-latest
     needs: [build, deploy-dev]
