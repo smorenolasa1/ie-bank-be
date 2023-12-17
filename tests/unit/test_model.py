@@ -43,4 +43,4 @@ def test_account_repr():
         account = Account("John Doe", "€", "Spain")
         db.session.add(account)
         db.session.commit()
-        assert repr(account) == f"<Account '{account.account_number}'>"
+        assert repr(account) == f"<Event '{account.account_number}'>"

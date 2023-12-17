@@ -22,3 +22,6 @@ class Account(db.Model):
         self.country = country
         self.balance = 0.0
         self.status = "Active"
+
+    def __repr__(self):
+        return f"<Account '{self.account_number}'>"
