@@ -33,4 +33,15 @@ def test_account_check():
     account = Account("John Doe", "Spain", "€")
     assert repr(account) == f"<Event '{(account.account_number)}'>"
 
- 
+def test_account_number_unique():
+    """
+    GIVEN a Account model
+    WHEN a new account is created
+    THEN check the account number is unique
+    """
+    account1 = Account("John Doe", "€", "Spain")
+    account2 = Account("Jane Doe", "€", "Spain")
+    db.session.add(account1)
+    db.session.add(account2)
+    db.session.commit()
+    assert account1.account_number != account2.account_number

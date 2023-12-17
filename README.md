@@ -1,4 +1,24 @@
 # IE Bank backend
+You will be provided with a repo on GitHub, main branch:
+Clone the repository into GitHub desktop
+Create a new branch by going to git bash:
+cd OneDrive
+cd Documentos
+cd Github
+cd (el nuevo repo que acabo de clonar)
+git checkout -b sofiamorenolasa
+Luego en el source control dale a commit branch
+
+How to create a Pull Request to the main branch:
+Navigate to the cloned github repository
+Go to pull requests
+Click on new pull request
+Select base: main
+
+
+Access to Azure portal is recommended to check your deployments:
+aguadamillas_students_1 - Microsoft Azure
+
 
 - [IE Bank backend](#ie-bank-backend)
   - [Overview](#overview)
