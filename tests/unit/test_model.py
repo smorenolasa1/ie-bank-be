@@ -39,9 +39,10 @@ def test_account_number_unique():
     WHEN a new account is created
     THEN check the account number is unique
     """
-    account1 = Account("John Doe", "€", "Spain")
-    account2 = Account("Jane Doe", "€", "Spain")
-    db.session.add(account1)
-    db.session.add(account2)
-    db.session.commit()
-    assert account1.account_number != account2.account_number
+    with app.app_context():
+        account1 = Account("John Doe", "€", "Spain")
+        account2 = Account("Jane Doe", "€", "Spain")
+        db.session.add(account1)
+        db.session.add(account2)
+        db.session.commit()
+        assert account1.account_number != account2.account_number
