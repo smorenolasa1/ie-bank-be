@@ -32,3 +32,16 @@ def test_account_check():
     """
     account = Account("John Doe", "Spain", "€")
     assert repr(account) == f"<Event '{(account.account_number)}'>"
+
+def test_account_init():
+    """
+    GIVEN a Account model
+    WHEN a new Account is created
+    THEN check the name, currency, country, balance, and status are initialized correctly
+    """
+    account = Account("John Doe", "€", "Spain")
+    assert account.name == "John Doe"
+    assert account.currency == "€"
+    assert account.country == "Spain"
+    assert account.balance == 0.0
+    assert account.status == "Active"
